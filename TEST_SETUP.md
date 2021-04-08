@@ -79,3 +79,30 @@ module.exports = ''
   ]
 }
 ```
+
+## React Testing Library
+
+1. Install as a dev dependency.
+
+```
+npm install --save-dev @testing-library/react
+```
+
+## Jest-Dom
+
+1. Install as a dev dependency.
+
+```
+npm install --save-dev @testing-library/jest-dom
+```
+
+2. Update `setupTests.js` to utilize jest-dom.
+
+```
+/* eslint-disable import/no-extraneous-dependencies */
+import '@testing-library/jest-dom';
+import { configure } from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+
+configure({ adapter: new Adapter() });
+```
