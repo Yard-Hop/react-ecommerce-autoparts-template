@@ -47,26 +47,31 @@ describe('App tests', () => {
     expect(title).toBeInTheDocument();
   });
 
-  it('changes pages if you click on catalog', async () => {
+  it('changes to the catalogue page if you click on catalog', async () => {
+    // Mock the fetch response for /api/products
     window.fetch.mockResolvedValueOnce({
       ok: true,
       json: async () => (mockProducts),
     });
 
-    let getByText;
+    // Render the App component
+    let component;
     await act(async () => {
-      const { getByText: getText } = await render(<App />);
-      getByText = getText;
+      component = await render(<App />);
     });
-    // const { getByText: getText } = await render(<App />);
+    const { getByText, queryByText, getAllByText } = component;
 
     // Click button
     await act(async () => {
       await fireEvent.click(getByText('Catalog'));
     });
-    // await fireEvent.click(getByText('Catalog'));
 
-    // const title = getByText(/Items near you:/i);
-    // expect(title).not.toBeInTheDocument();
+    // Expect old title to no longer show
+    expect(queryByText('Items near you:')).not.toBeInTheDocument();
+
+    // Expect Catalog to show up more than once
+    // Because it should be in the header plus the new title
+    const catalogTextArr = getAllByText(/Catalog/i);
+    expect(catalogTextArr.length > 1).toBe(true);
   });
 });
