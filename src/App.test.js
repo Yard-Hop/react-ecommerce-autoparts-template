@@ -54,7 +54,7 @@ describe('App tests', () => {
       expect(title).toBeInTheDocument();
     });
 
-    it('Changes to the catalogue page if you click on catalog', async () => {
+    it('Changes to the Catalogue page if you click on catalog', async () => {
       // Mock the fetch response for /api/products
       window.fetch.mockResolvedValueOnce({
         ok: true,
@@ -82,7 +82,7 @@ describe('App tests', () => {
       expect(newTitleArr.length > 1).toBe(true);
     });
 
-    it('Changes to the the order page when you click Track Order', async () => {
+    it('Changes to the Order page when you click Track Order', async () => {
       // Mock the fetch response for /api/products
       window.fetch.mockResolvedValueOnce({
         ok: true,
@@ -108,6 +108,26 @@ describe('App tests', () => {
       // Because it should be in the header plus the new title
       const newTitleArr = getAllByText(/Order/i);
       expect(newTitleArr.length > 1).toBe(true);
+    });
+
+    it('Changes to the Login page when you click the Login button', async () => {
+      let component;
+      await act(async () => {
+        component = await render(<App />);
+      });
+      const { getByText, queryByText, getAllByText } = component;
+
+      await act(async () => {
+        await fireEvent.click(getByText('Login'));
+      });
+
+      // Expect old title to no longer show
+      expect(queryByText('Items near you:')).not.toBeInTheDocument();
+
+      // Expect Log in to show up more than once
+      // Because it should be in the header plus the log in button
+      const loginArr = getAllByText(/Log in/i);
+      expect(loginArr.length > 1).toBe(true);
     });
   });
 });
