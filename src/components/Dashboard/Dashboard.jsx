@@ -11,6 +11,7 @@ import ProductForm from './ProductForm';
 import Purchases from './Purchases/Purchases';
 import { useStateValue } from '../../StateProvider';
 import Inventory from './Inventory/Inventory';
+import Messages from './Messages/Messages';
 
 const Dashboard = () => {
   // eslint-disable-next-line no-unused-vars
@@ -39,6 +40,9 @@ const Dashboard = () => {
         </Route>
         <Route exact path="/dashboard/purchases">
           <Purchases />
+        </Route>
+        <Route exact path="/dashboard/messages">
+          <Messages />
         </Route>
       </Switch>
     </div>
