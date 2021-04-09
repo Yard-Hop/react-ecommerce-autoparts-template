@@ -26,7 +26,8 @@ const Catalog = () => {
         <div className="catalog__productCont">
           {catalog.map((item) => (
             <CatalogProduct
-              id={item.id}
+              key={item._id}
+              id={item._id}
               title={item.title}
               price={item.price}
               make={item.make}
