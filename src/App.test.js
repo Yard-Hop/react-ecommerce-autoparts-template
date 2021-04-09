@@ -19,32 +19,32 @@ describe('App tests', () => {
   afterAll(() => delete global.fetch);
 
   describe('Initial render', () => {
-    it('renders without crashing', () => {
+    it('Renders without crashing', () => {
       const div = document.createElement('div');
       ReactDOM.render(<App />, div);
       // Enzyme
       shallow(<App />);
     });
 
-    it('has the correct welcome text', () => {
+    it('Has the correct welcome text', () => {
       const { getByText } = render(<App />);
       const title = getByText(/Items near you:/i);
       expect(title).toBeInTheDocument();
     });
 
-    it('contains the header', () => {
+    it('Contains the header', () => {
       const wrapper = shallow(<App />);
       expect(wrapper.containsMatchingElement(<Header />)).toBe(true);
     });
 
-    it('contains the footer', () => {
+    it('Contains the footer', () => {
       const wrapper = shallow(<App />);
       expect(wrapper.containsMatchingElement(<Footer />)).toBe(true);
     });
   });
 
   describe('Header functionality', () => {
-    it('stays unchanged if the user clicks home', () => {
+    it('Stays unchanged if the user clicks home', () => {
       const { getByText } = render(<App />);
 
       // Click button
@@ -54,7 +54,7 @@ describe('App tests', () => {
       expect(title).toBeInTheDocument();
     });
 
-    it('changes to the catalogue page if you click on catalog', async () => {
+    it('Changes to the catalogue page if you click on catalog', async () => {
       // Mock the fetch response for /api/products
       window.fetch.mockResolvedValueOnce({
         ok: true,
@@ -82,7 +82,7 @@ describe('App tests', () => {
       expect(newTitleArr.length > 1).toBe(true);
     });
 
-    it('changes to the the order page when you click Track Order', async () => {
+    it('Changes to the the order page when you click Track Order', async () => {
       // Mock the fetch response for /api/products
       window.fetch.mockResolvedValueOnce({
         ok: true,
