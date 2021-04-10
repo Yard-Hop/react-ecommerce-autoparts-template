@@ -57,13 +57,13 @@ async function getAllProductsByUser(req, res, next) {
 
 async function createProduct(req, res, next) {
   const {
-    title, make, model, year, borough, description, price,
+    title, make, year, borough, description, price, condition, imagePath,
   } = req.body;
 
   const sellerID = req.cookies.ssid;
 
   await Product.create({
-    title, make, model, year, borough, description, price, sellerID,
+    title, make, year, borough, description, price, condition, imagePath, sellerID,
   })
     .then((product) => {
       res.locals.product = product;
