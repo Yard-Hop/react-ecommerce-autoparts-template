@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import ProductForm from './ProductForm';
 import UploadImages from './UploadImages';
 import { useStateValue } from '../../../StateProvider';
@@ -16,12 +17,15 @@ const ListingIndex = () => {
   const [step, setStep] = useState(1);
   const [selectedFile, setSelectedFile] = useState();
   const [isFiledPicked, setIsFiledPicked] = useState(false);
+  const history = useHistory();
 
   const uploadProduct = () => {
     // sends the fetch request of product info & image upload
-    fetch('', {
+    fetch('/api/products', {
       method: 'POST',
-      headers: '',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         title,
         price,
@@ -33,11 +37,17 @@ const ListingIndex = () => {
         sellerID: user.id,
         selectedFile,
       }),
+    }).then((res) => {
+      console.log('selectedFile', selectedFile);
+      if (res.status === 200) {
+        history.push('/dashboard/inventory');
+      }
+    }).catch((error) => {
+      console.err('Error: ', error);
     });
   };
 
   if (step === 1) {
-    console.log('inside step is 1');
     return (
       <ProductForm
         title={title}

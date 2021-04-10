@@ -20,7 +20,6 @@ const ProductForm = ({
   setYear,
   setStep,
 }) => {
-  console.log('inside productForm');
   const submitProduct = (event) => {
     event.preventDefault();
 
