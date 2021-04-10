@@ -2,6 +2,11 @@ const express = require('express');
 
 const router = express.Router();
 
+const { STRIPE_KEY } = require('../../db/config.json');
+
+// eslint-disable-next-line import/order
+const stripe = require('stripe')(STRIPE_KEY);
+
 const userController = require('../controllers/userController.js');
 const productController = require('../controllers/productController.js');
 const orderController = require('../controllers/orderController.js');
@@ -117,6 +122,18 @@ router.patch('/orders/:orderId', orderController.updateOrder, (req, res) => {
 router.delete('/orders/:orderId', orderController.deleteOrder, (req, res) => {
   if (res.locals.error) res.status(400).json(res.locals.error);
   else res.status(200).json({ status: 200, message: 'Succesfully deleted the order' });
+});
+
+router.post('/create-checkout-session', async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: req.body,
+    mode: 'payment',
+    success_url: '/',
+    cancel_url: '/',
+  });
+
+  res.json({ id: session.id });
 });
 
 module.exports = router;
