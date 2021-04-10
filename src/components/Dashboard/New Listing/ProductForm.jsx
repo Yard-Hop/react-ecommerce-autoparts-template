@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ProductForm.css';
-import { useStateValue } from '../../StateProvider';
+import { useStateValue } from '../../../StateProvider';
 
 const ProductForm = () => {
   const [title, setTitle] = useState('');
@@ -29,6 +29,7 @@ const ProductForm = () => {
         make,
         condition,
         year,
+        // imageLink,
         sellerID: user.id,
       }),
     }).then((res) => {
@@ -226,7 +227,8 @@ const ProductForm = () => {
 
           </div>
           <div className="form__buttons">
-            <button type="button" onClick={submitProduct} className="button__createListing">Create Listing</button>
+            {/* <button onClick={submitProduct}>Create Listing</button> */}
+            <button type="button" onClick={submitProduct} className="button__createListing">Next</button>
             <button type="button" onClick={clearFields} className="button__clearListing">Clear All Fields</button>
           </div>
         </form>

@@ -7,7 +7,7 @@ import {
 import './Dashboard.css';
 import Main from './Main';
 import Sidebar from './Sidebar';
-import ProductForm from './ProductForm';
+import ProductForm from './New Listing/ProductForm';
 import Purchases from './Purchases/Purchases';
 import { useStateValue } from '../../StateProvider';
 import Inventory from './Inventory/Inventory';
