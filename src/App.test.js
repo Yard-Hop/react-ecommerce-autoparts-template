@@ -55,10 +55,16 @@ describe('App tests', () => {
     });
 
     it('Changes to the Catalogue page if you click on catalog', async () => {
+      // Create a promise so that we can wait until the mocked API response has been returned
+      const promiseFetchReturned = () => Promise.resolve();
+
       // Mock the fetch response for /api/products
       window.fetch.mockResolvedValueOnce({
         ok: true,
-        json: async () => (mockProducts),
+        json: () => {
+          promiseFetchReturned();
+          return mockProducts;
+        },
       });
 
       // Render the App component
@@ -69,9 +75,10 @@ describe('App tests', () => {
       const { getByText, queryByText, getAllByText } = component;
 
       // Click button
-      await act(async () => {
-        await fireEvent.click(getByText('Catalog'));
-      });
+      fireEvent.click(getByText('Catalog'));
+
+      // Wait for the fetch request to complete
+      await act(promiseFetchReturned);
 
       // Expect old title to no longer show
       expect(queryByText('Items near you:')).not.toBeInTheDocument();
@@ -97,9 +104,7 @@ describe('App tests', () => {
       const { getByText, queryByText, getAllByText } = component;
 
       // Click button
-      await act(async () => {
-        await fireEvent.click(getByText('Track Order'));
-      });
+      fireEvent.click(getByText('Track Order'));
 
       // Expect old title to no longer show
       expect(queryByText('Items near you:')).not.toBeInTheDocument();
@@ -111,15 +116,14 @@ describe('App tests', () => {
     });
 
     it('Changes to the Login page when you click the Login button', async () => {
+      // Render the App component
       let component;
       await act(async () => {
         component = await render(<App />);
       });
       const { getByText, queryByText, getAllByText } = component;
 
-      await act(async () => {
-        await fireEvent.click(getByText('Login'));
-      });
+      fireEvent.click(getByText('Login'));
 
       // Expect old title to no longer show
       expect(queryByText('Items near you:')).not.toBeInTheDocument();
@@ -129,5 +133,33 @@ describe('App tests', () => {
       const loginArr = getAllByText(/Log in/i);
       expect(loginArr.length > 1).toBe(true);
     });
+
+    // Test create account
+    xit('Changes to the Sign up page when you click the Create an Account button', async () => {
+      // Render the App component
+      let component;
+      await act(async () => {
+        component = await render(<App />);
+      });
+      const { getByText, queryByText, getAllByText } = component;
+
+      // Click button
+      await act(async () => {
+        await fireEvent.click(getByText('Create an Account'));
+      });
+
+      // Expect old title to no longer show
+      expect(queryByText('Items near you:')).not.toBeInTheDocument();
+
+      // Expect Sign up to show up at least once
+      const loginArr = getAllByText(/Sign up/i);
+      expect(loginArr.length >= 1).toBe(true);
+    });
+
+    // Test shopping cart
+
+    // Navigate between multiple pages
+
+    // Test items near you exist
   });
 });
