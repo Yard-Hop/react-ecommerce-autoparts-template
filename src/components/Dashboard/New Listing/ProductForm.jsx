@@ -1,48 +1,33 @@
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './ProductForm.css';
-import { useStateValue } from '../../../StateProvider';
 
-const ProductForm = () => {
-  const [title, setTitle] = useState('');
-  const [price, setPrice] = useState(0.00);
-  const [borough, setBorough] = useState('none');
-  const [description, setDescription] = useState('');
-  const [make, setMake] = useState('none');
-  const [condition, setCondition] = useState('none');
-  const [year, setYear] = useState('none');
-  // eslint-disable-next-line no-unused-vars
-  const [{ user }, dispatch] = useStateValue();
-
+const ProductForm = ({
+  title,
+  price,
+  borough,
+  description,
+  make,
+  condition,
+  year,
+  setTitle,
+  setPrice,
+  setBorough,
+  setDescription,
+  setMake,
+  setCondition,
+  setYear,
+  setStep,
+}) => {
+  console.log('inside productForm');
   const submitProduct = (event) => {
     event.preventDefault();
-    fetch('/api/products', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        title,
-        price,
-        borough,
-        description,
-        make,
-        condition,
-        year,
-        // imageLink,
-        sellerID: user.id,
-      }),
-    }).then((res) => {
-      if (res.status === 200) {
-        setTitle('');
-        setPrice(0.00);
-        setBorough('none');
-        setDescription('');
-        setMake('none');
-        setCondition('none');
-        setYear('none');
-      }
-    });
+
+    if (title.length > 0 && price > 0 && borough.length > 0 && description.length > 0
+      && make.length > 0 > 0 && condition.length > 0 && year.length > 0) {
+      setStep(2);
+    }
   };
 
   const clearFields = () => {
@@ -227,8 +212,9 @@ const ProductForm = () => {
 
           </div>
           <div className="form__buttons">
-            {/* <button onClick={submitProduct}>Create Listing</button> */}
-            <button type="button" onClick={submitProduct} className="button__createListing">Next</button>
+            <Link to="/dashboard/newProduct/uploadImages" onClick={submitProduct}>
+              <button type="button" className="button__createListing">Continue</button>
+            </Link>
             <button type="button" onClick={clearFields} className="button__clearListing">Clear All Fields</button>
           </div>
         </form>

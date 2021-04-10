@@ -7,7 +7,7 @@ import {
 import './Dashboard.css';
 import Main from './Main';
 import Sidebar from './Sidebar';
-import ProductForm from './New Listing/ProductForm';
+import ListingIndex from './New Listing/Index';
 import Purchases from './Purchases/Purchases';
 import { useStateValue } from '../../StateProvider';
 import Inventory from './Inventory/Inventory';
@@ -33,7 +33,7 @@ const Dashboard = () => {
           <Main />
         </Route>
         <Route exact path="/dashboard/newProduct">
-          <ProductForm />
+          <ListingIndex />
         </Route>
         <Route exact path="/dashboard/inventory">
           <Inventory />

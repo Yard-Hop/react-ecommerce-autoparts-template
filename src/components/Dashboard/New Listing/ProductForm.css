@@ -136,10 +136,10 @@
 }
 
 .button__createListing {
-  background-color: goldenrod;
+  background-color: #3ea175;
   color: white;
   outline: none;
-  border: 2px solid rgb(194, 148, 30);
+  border: 2px solid rgb(37, 119, 17);
   border-radius: 2px;
 }
 
