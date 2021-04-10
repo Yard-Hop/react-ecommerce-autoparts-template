@@ -117,11 +117,7 @@ describe('App tests', () => {
 
     it('Changes to the Login page when you click the Login button', async () => {
       // Render the App component
-      let component;
-      await act(async () => {
-        component = await render(<App />);
-      });
-      const { getByText, queryByText, getAllByText } = component;
+      const { getByText, queryByText, getAllByText } = render(<App />);
 
       fireEvent.click(getByText('Login'));
 
