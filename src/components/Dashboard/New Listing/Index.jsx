@@ -38,12 +38,10 @@ const ListingIndex = () => {
         selectedFile,
       }),
     }).then((res) => {
-      console.log('selectedFile', selectedFile);
+    //   console.log('selectedFile', selectedFile);
       if (res.status === 200) {
         history.push('/dashboard/inventory');
       }
-    }).catch((error) => {
-      console.err('Error: ', error);
     });
   };
 
