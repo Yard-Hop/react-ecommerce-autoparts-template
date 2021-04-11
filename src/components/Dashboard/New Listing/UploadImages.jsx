@@ -21,7 +21,6 @@ const UploadImages = ({
     <div>
       <label htmlFor="form__uploadbutton">
         <h3>Upload Images</h3>
-        <button onClick={() => setStep(1)}>Back</button>
         <input type="file" name="file" onChange={changeHandler} />
         {isFiledPicked ? (
           <div>
@@ -36,6 +35,7 @@ const UploadImages = ({
       </label>
       <br />
       <button type="button" onClick={uploadProduct}>Upload</button>
+      <button onClick={() => setStep(1)}>Back</button>
     </div>
   );
 };

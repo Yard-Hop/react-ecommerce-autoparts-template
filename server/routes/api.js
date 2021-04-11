@@ -1,6 +1,9 @@
 const express = require('express');
 
 const router = express.Router();
+const upload = require('../services/fileUpload');
+
+const singleImageUpload = upload.single('image');
 
 const userController = require('../controllers/userController.js');
 const productController = require('../controllers/productController.js');
@@ -70,6 +73,18 @@ router.get('/productsByUser/:id', productController.getAllProductsByUser, (req, 
   else res.status(200).json(res.locals.products);
 });
 
+// post image to s3 then store req.file.s3location to product.imagePath
+router.post('/image-upload', (req, res) => {
+  singleImageUpload(req, res, (err) => {
+    if (err) res.status(422).json({ Error: err.message });
+    else {
+      res.locals.s3location = req.file.location;
+      res.json({ imageUrl: req.file.location });
+    }
+  });
+});
+
+// post product details into db with imagePath as the s3 location
 router.post('/products', productController.createProduct, (req, res) => {
   if (res.locals.error) res.status(400).json(res.locals.error);
   else res.status(200).json(res.locals.product);

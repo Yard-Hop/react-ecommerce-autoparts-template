@@ -55,6 +55,7 @@ async function getAllProductsByUser(req, res, next) {
     });
 }
 
+// post request to s3 and then post request to db
 async function createProduct(req, res, next) {
   const {
     title, make, year, borough, description, price, condition, imagePath,
