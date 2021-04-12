@@ -1,5 +1,4 @@
 /* eslint-disable */
-/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import './ProductForm.css';
 import { useStateValue } from '../../../StateProvider';
