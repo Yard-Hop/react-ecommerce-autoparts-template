@@ -21,6 +21,7 @@ const ListingIndex = () => {
 
   const uploadProduct = () => {
     // sends the fetch request of product info & image upload
+    // add imagePath in here.
     fetch('/api/products', {
       method: 'POST',
       headers: {
