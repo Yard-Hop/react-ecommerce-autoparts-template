@@ -41,7 +41,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login__background">
+    <div className="login__background" data-testid="login">
       <div className="login">
         <div className="login__image">
           <Link to="/">

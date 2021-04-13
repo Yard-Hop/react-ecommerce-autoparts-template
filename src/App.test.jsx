@@ -10,6 +10,8 @@ let navEl;
 let navHomeEl;
 let navCatalogEl;
 let navTrackEl;
+let navLoginEl;
+let navSignupEl;
 
 beforeEach(() => {
   render(
@@ -23,6 +25,8 @@ beforeEach(() => {
   navHomeEl = screen.getByTestId('nav-home');
   navCatalogEl = screen.getByTestId('nav-catalog');
   navTrackEl = screen.getByTestId('nav-track');
+  navLoginEl = screen.getByTestId('nav-login');
+  navSignupEl = screen.getByTestId('nav-signup');
 });
 
 test('Renders without crashing', () => {
@@ -63,6 +67,20 @@ test('Changes to the Order page when you click Track Order', () => {
   expect(orderEl).toBeInTheDocument();
 });
 
-// test('Changes to the Login page when you click the Login button', () => {
-//   fireEvent.CLICK
-// }
+test('Changes to the Login page when you click the Login button', () => {
+  fireEvent.click(navLoginEl);
+  const loginEl = screen.getByTestId('login');
+  expect(loginEl).toBeInTheDocument();
+});
+
+test('Changes to the Sign up page when you click the Create an Account button', () => {
+  fireEvent.click(navSignupEl);
+  const signupEl = screen.getByTestId('signup');
+  expect(signupEl).toBeInTheDocument();
+});
+
+// Test shopping cart
+
+// Navigate between multiple pages
+
+// Test items near you exist

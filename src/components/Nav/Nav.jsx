@@ -60,11 +60,11 @@ const Nav = () => {
           </div>
         ) : (
           <div className="nav__login">
-            <Link to="/login">
+            <Link to="/login" data-testid="nav-login">
               <button className="nav__loginButton" type="button">Login</button>
             </Link>
             <p>or</p>
-            <Link to="/signup">
+            <Link to="/signup" data-testid="nav-signup">
               <button className="nav__signUpButton" type="button">Create an Account</button>
             </Link>
           </div>
