@@ -60,7 +60,6 @@ async function getAllProductsByUser(req, res, next) {
 
 // post request to s3 and then post request to db
 async function createProduct(req, res, next) {
-  console.log('req', req);
   const {
     title, make, year, borough, description, price, condition,
   } = req.body;
@@ -75,16 +74,14 @@ async function createProduct(req, res, next) {
       res.locals.product = product;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => next(error));
 }
 
 async function uploadImageToS3(req, res, next) {
-  singleImageUpload(req, res, (error) => {
-    if (error) res.locals.error = error;
-    else res.locals.s3location = req.file.location;
+  await singleImageUpload(req, res, (error) => {
+    if (error) return next(error);
+    res.json({ imageUrl: req.body.image });
+    res.locals.s3location = req.file.location;
     return next();
   });
 }

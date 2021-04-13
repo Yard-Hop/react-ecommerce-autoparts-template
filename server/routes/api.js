@@ -70,19 +70,9 @@ router.get('/productsByUser/:id', productController.getAllProductsByUser, (req, 
   else res.status(200).json(res.locals.products);
 });
 
-// post image to s3 then store req.file.s3location to product.imagePath
-//   singleImageUpload(req, res, (err) => {
-//     if (err) res.status(422).json({ Error: err.message });
-//     else {
-//       res.locals.s3location = req.file.location;
-//       res.json({ imageUrl: req.file.location });
-//     }
-//   });
-
 // post product details into db with imagePath as the s3 location
-router.post('/products', productController.uploadImageToS3, productController.createProduct, (req, res) => {
-  if (res.locals.error) res.status(400).json(res.locals.error);
-  else res.status(200).json(res.locals.product);
+router.post('/products', productController.uploadImageToS3, (req, res) => {
+  res.status(200).json(res.locals.product);
 });
 
 router.patch('/products/:orderId', productController.updateProduct, (req, res) => {
