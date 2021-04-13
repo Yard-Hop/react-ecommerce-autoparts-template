@@ -2,10 +2,11 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import App, { Routes } from './App';
+import App from './App';
 
 let homeTitleEl;
 let headerEl;
+let footerEl;
 let navEl;
 let navHomeEl;
 let navCatalogEl;
@@ -16,11 +17,12 @@ let navSignupEl;
 beforeEach(() => {
   render(
     <MemoryRouter initialEntries={['/']} initialIndex={0}>
-      <Routes />
+      <App />
     </MemoryRouter>,
   );
   homeTitleEl = screen.getByTestId('home-title');
   headerEl = screen.getByTestId('header');
+  footerEl = screen.getByTestId('footer');
   navEl = screen.getByTestId('nav');
   navHomeEl = screen.getByTestId('nav-home');
   navCatalogEl = screen.getByTestId('nav-catalog');
@@ -41,8 +43,6 @@ test('Contains the header', () => {
 });
 
 test('Contains the footer', () => {
-  render(<App />);
-  const footerEl = screen.getByTestId('footer');
   expect(footerEl).toBeInTheDocument();
 });
 

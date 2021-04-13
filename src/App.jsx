@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Catalog from './components/Catalog/Catalog';
@@ -69,14 +69,12 @@ export const Routes = () => (
 );
 
 const App = () => (
-  <BrowserRouter>
-    <div className="App">
-      <Routes />
-      <div className="footer-content">
-        <Footer />
-      </div>
+  <div className="App">
+    <Routes />
+    <div className="footer-content">
+      <Footer />
     </div>
-  </BrowserRouter>
+  </div>
 );
 
 export default App;
