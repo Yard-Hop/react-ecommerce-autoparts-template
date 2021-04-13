@@ -9,7 +9,7 @@ const Header = () => (
   <div className="header" data-testid="header">
 
     <div className="logo">
-      <Link to="/">
+      <Link to="/" data-testid="nav-logo">
         <img src={Logo} alt="" />
       </Link>
     </div>

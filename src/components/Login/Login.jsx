@@ -66,9 +66,9 @@ const Login = () => {
 
           <div className="login__createAccount">
             <p>Don&apos;t have an account?</p>
-            <a href="/signup">
+            <Link to="/signup" data-testid="login-signup-link">
               Sign Up
-            </a>
+            </Link>
           </div>
 
         </div>
