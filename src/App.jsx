@@ -11,63 +11,67 @@ import Signup from './components/Signup/Signup';
 import Cart from './components/Cart/Cart';
 import Dashboard from './components/Dashboard/Dashboard';
 
+export const Routes = () => (
+  <Switch>
+    <Route exact path="/">
+      <div className="header-content">
+        <Header />
+      </div>
+      <div className="main-content">
+        <Home />
+      </div>
+    </Route>
+
+    <Route exact path="/catalog">
+      <div className="header-content">
+        <Header />
+      </div>
+      <div className="main-content">
+        <Catalog />
+      </div>
+    </Route>
+
+    <Route exact path="/order">
+      <div className="header-content">
+        <Header />
+      </div>
+      <div className="main-content">
+        <Order />
+      </div>
+    </Route>
+
+    <Route exact path="/login">
+      <Login />
+    </Route>
+
+    <Route path="/dashboard">
+      <div className="header-content">
+        <Header />
+      </div>
+      <div className="main-content">
+        <Dashboard />
+      </div>
+    </Route>
+
+    <Route exact path="/signup">
+      <Signup />
+    </Route>
+
+    <Route exact path="/cart">
+      <div className="header-content">
+        <Header />
+      </div>
+      <div className="main-content">
+        <Cart />
+      </div>
+    </Route>
+  </Switch>
+);
+
 const App = () => (
   <BrowserRouter>
     <div className="App">
-      <Switch>
-        <Route exact path="/">
-          <div className="header-content">
-            <Header />
-          </div>
-          <div className="main-content">
-            <Home />
-          </div>
-        </Route>
-
-        <Route exact path="/catalog">
-          <div className="header-content">
-            <Header />
-          </div>
-          <div className="main-content">
-            <Catalog />
-          </div>
-        </Route>
-
-        <Route exact path="/order">
-          <div className="header-content">
-            <Header />
-          </div>
-          <div className="main-content">
-            <Order />
-          </div>
-        </Route>
-
-        <Route exact path="/login">
-          <Login />
-        </Route>
-
-        <Route path="/dashboard">
-          <div className="header-content">
-            <Header />
-          </div>
-          <div className="main-content">
-            <Dashboard />
-          </div>
-        </Route>
-
-        <Route exact path="/signup">
-          <Signup />
-        </Route>
-
-        <Route exact path="/cart">
-          <div className="header-content">
-            <Header />
-          </div>
-          <div className="main-content">
-            <Cart />
-          </div>
-        </Route>
-      </Switch>
+      <Routes />
       <div className="footer-content">
         <Footer />
       </div>
