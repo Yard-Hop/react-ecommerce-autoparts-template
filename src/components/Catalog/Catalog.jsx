@@ -20,7 +20,7 @@ const Catalog = () => {
   }, []);
 
   return (
-    <div className="catalog__container">
+    <div className="catalog__container" data-testid="catalog">
       <div className="catalog">
         <h2 className="catalog__title">Catalog</h2>
         <div className="catalog__productCont">

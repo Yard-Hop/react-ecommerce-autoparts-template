@@ -35,17 +35,17 @@ const Nav = () => {
   return (
     <div className="nav" data-testid="nav">
       <div className="nav__links">
-        <Link style={navStyle} to="/">
+        <Link style={navStyle} to="/" data-testid="nav-home">
           <p className="link">Home</p>
         </Link>
-        <Link style={navStyle} to="/catalog">
+        <Link style={navStyle} to="/catalog" data-testid="nav-catalog">
           <p className="link">Catalog</p>
         </Link>
-        <Link style={navStyle} to="/order">
+        <Link style={navStyle} to="/order" data-testid="nav-track">
           <p className="link">Track Order</p>
         </Link>
         { user && (
-          <Link style={navStyle} to="/dashboard">
+          <Link style={navStyle} to="/dashboard" data-testid="nav-dashboard">
             <p className="link">Dashboard</p>
           </Link>
         )}
