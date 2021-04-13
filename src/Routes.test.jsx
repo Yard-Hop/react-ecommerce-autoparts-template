@@ -2,11 +2,10 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import App from './App';
+import Routes from './Routes';
 
 let homeTitleEl;
 let headerEl;
-let footerEl;
 let navEl;
 let navHomeEl;
 let navCatalogEl;
@@ -19,12 +18,11 @@ let navLogoEl;
 beforeEach(() => {
   render(
     <MemoryRouter initialEntries={['/']} initialIndex={0}>
-      <App />
+      <Routes />
     </MemoryRouter>,
   );
   homeTitleEl = screen.getByTestId('home-title');
   headerEl = screen.getByTestId('header');
-  footerEl = screen.getByTestId('footer');
   navEl = screen.getByTestId('nav');
   navHomeEl = screen.getByTestId('nav-home');
   navCatalogEl = screen.getByTestId('nav-catalog');
@@ -38,63 +36,59 @@ beforeEach(() => {
 test('Renders without crashing', () => {
 });
 
-test('Has the correct welcome text', () => {
+test('Starts on the home page', () => {
   expect(homeTitleEl).toBeInTheDocument();
 });
 
-test('Contains the header', () => {
+test('Homepage contains a header', () => {
   expect(headerEl).toBeInTheDocument();
 });
 
-test('Contains the footer', () => {
-  expect(footerEl).toBeInTheDocument();
-});
-
-test('Contains the navbar', () => {
+test('Homepage contains a navbar', () => {
   expect(navEl).toBeInTheDocument();
 });
 
-test('Stays unchanged if the user clicks home', () => {
+test('Home route works', () => {
   fireEvent.click(navHomeEl);
   expect(homeTitleEl).toBeInTheDocument();
 });
 
-test('Stays unchanged if the user clicks the logo', () => {
+test('Logo home route works', () => {
   fireEvent.click(navLogoEl);
   expect(homeTitleEl).toBeInTheDocument();
 });
 
-test('Changes to the Catalogue page if you click on catalog', () => {
+test('Catalogue route works', () => {
   fireEvent.click(navCatalogEl);
   const catalogEl = screen.getByTestId('catalog');
   expect(catalogEl).toBeInTheDocument();
 });
 
-test('Changes to the Order page when you click Track Order', () => {
+test('Track order route works', () => {
   fireEvent.click(navTrackEl);
   const orderEl = screen.getByTestId('order');
   expect(orderEl).toBeInTheDocument();
 });
 
-test('Changes to the Login page when you click the Login button', () => {
+test('Login route works', () => {
   fireEvent.click(navLoginEl);
   const loginEl = screen.getByTestId('login');
   expect(loginEl).toBeInTheDocument();
 });
 
-test('Changes to the Sign up page when you click the Create an Account button', () => {
+test('Sign up route works', () => {
   fireEvent.click(navSignupEl);
   const signupEl = screen.getByTestId('signup');
   expect(signupEl).toBeInTheDocument();
 });
 
-test('Changes to the shopping cart page when you click the shopping cart', () => {
+test('Shopping cart route works', () => {
   fireEvent.click(navCartEl);
   const cartEl = screen.getByTestId('cart');
   expect(cartEl).toBeInTheDocument();
 });
 
-test('Changes between multiple pages accurately', () => {
+test('Switches between multiple routes correctly', () => {
   // Switch to the catalog page
   fireEvent.click(navCatalogEl);
   const catalogEl = screen.getByTestId('catalog');
