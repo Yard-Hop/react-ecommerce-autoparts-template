@@ -6,7 +6,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 
 const Footer = () => (
-  <div className="footer">
+  <div className="footer" data-testid="footer">
     <div className="footer__top">
       <div className="footer__section">
         <h4>COMPANY</h4>

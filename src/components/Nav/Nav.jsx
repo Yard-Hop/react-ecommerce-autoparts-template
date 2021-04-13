@@ -33,7 +33,7 @@ const Nav = () => {
   };
 
   return (
-    <div className="nav">
+    <div className="nav" data-testid="nav">
       <div className="nav__links">
         <Link style={navStyle} to="/">
           <p className="link">Home</p>
