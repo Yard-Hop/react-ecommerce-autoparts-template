@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
 import './Subtotal.css';
 import CurrencyFormat from 'react-currency-format';
 import { loadStripe } from '@stripe/stripe-js';
@@ -8,9 +7,7 @@ import { useStateValue } from '../../StateProvider';
 const stripePromise = loadStripe('pk_test_51IdmSzCtjOL0VwivxshnQAmGNBlPWmvvlSicCp2xxpNLUuIdNAAxlYaay2ejYhZvNRIJd6PY0XFABYntzDBKYpm100zqnZEenc');
 
 const Subtotal = () => {
-  // const [{ cart, user }] = useStateValue();
   const [{ cart }] = useStateValue();
-  // const history = useHistory();
 
   const validateCheckOut = () => {
     if (cart.length < 1) return false;
