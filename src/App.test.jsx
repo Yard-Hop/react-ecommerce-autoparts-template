@@ -13,6 +13,7 @@ let navCatalogEl;
 let navTrackEl;
 let navLoginEl;
 let navSignupEl;
+let navCartEl;
 
 beforeEach(() => {
   render(
@@ -29,6 +30,7 @@ beforeEach(() => {
   navTrackEl = screen.getByTestId('nav-track');
   navLoginEl = screen.getByTestId('nav-login');
   navSignupEl = screen.getByTestId('nav-signup');
+  navCartEl = screen.getByTestId('nav-cart');
 });
 
 test('Renders without crashing', () => {
@@ -80,6 +82,11 @@ test('Changes to the Sign up page when you click the Create an Account button', 
 });
 
 // Test shopping cart
+test('Changes to the shopping cart page when you click the shopping cart', () => {
+  fireEvent.click(navCartEl);
+  const cartEl = screen.getByTestId('cart');
+  expect(cartEl).toBeInTheDocument();
+});
 
 // Navigate between multiple pages
 
