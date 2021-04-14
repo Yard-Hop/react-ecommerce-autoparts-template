@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const ProductSchema = new mongoose.Schema({
   title: { type: String, required: true },
   make: { type: String },
-  model: { type: String },
+  // model: { type: String },
   borough: { type: String },
   year: { type: Date },
-  imageLink: { type: String },
+  imagePath: { type: String },
   description: { type: String },
   price: { type: Number },
   condition: { type: String },

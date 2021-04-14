@@ -7,10 +7,7 @@ async function getOrders(req, res, next) {
       res.locals.orders = orders;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 async function getAllOrdersByUser(req, res, next) {
@@ -21,10 +18,7 @@ async function getAllOrdersByUser(req, res, next) {
       res.locals.orders = orders;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 async function getOrder(req, res, next) {
@@ -34,10 +28,7 @@ async function getOrder(req, res, next) {
       res.locals.order = order;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 async function createOrder(req, res, next) {
@@ -52,10 +43,7 @@ async function createOrder(req, res, next) {
       res.locals.ordercreated = order;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 // TODO: Needs fixing
@@ -76,10 +64,7 @@ async function updateOrder(req, res, next) {
       res.locals.order = order;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 async function deleteOrder(req, res, next) {
@@ -90,10 +75,7 @@ async function deleteOrder(req, res, next) {
       res.locals.deletedorder = order;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 module.exports = {
