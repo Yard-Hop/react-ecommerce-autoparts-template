@@ -5,7 +5,7 @@ import './CartProduct.css';
 import { useStateValue } from '../../StateProvider';
 
 const CartProduct = (props) => {
-  const [{ cart }, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
 
   const {
     id,
@@ -18,7 +18,6 @@ const CartProduct = (props) => {
 
   const deleteItem = () => {
     // eslint-disable-next-line no-console
-    console.log(cart);
 
     dispatch({
       type: 'REMOVE_FROM_CART',
@@ -42,7 +41,7 @@ const CartProduct = (props) => {
           <LocationOnIcon />
           <span>{location.borough}</span>
         </p>
-        <button type="button" onClick={deleteItem}>Remove from Cart</button>
+        <button type="button" onClick={deleteItem} data-testid="remove-from-cart">Remove from Cart</button>
       </div>
     </div>
   );

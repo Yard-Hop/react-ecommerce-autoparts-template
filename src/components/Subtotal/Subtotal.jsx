@@ -65,7 +65,7 @@ const Subtotal = () => {
         value={cart.reduce((acc, curr) => (acc + curr.price), 0)}
         renderText={(value) => (
           <>
-            <p>
+            <p data-testid="subtotal">
               Subtotal (
               {`${cart?.length} `}
               items):
