@@ -30,7 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "./node_modules/.bin/eslint ./server",
-    "jest": "jest"
+    "jest": "react-scripts test"
   },
   "jest": {
     "moduleNameMapper": {
