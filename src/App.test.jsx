@@ -165,3 +165,30 @@ test('Shopping cart is correctly updated with the correct items in users basket'
   expect(cartProductTitleEls[0].textContent).toBe(productTitleEls[0].textContent);
   expect(cartProductTitleEls[1].textContent).toBe(productTitleEls[1].textContent);
 });
+
+test('Shopping cart is correctly updated with the correct items in users basket after deletion', () => {
+  // Get add to cart buttons
+  const addToCartEls = screen.getAllByTestId('add-to-cart');
+
+  // Get Product Titles
+  const productTitleEls = screen.getAllByTestId('product-title');
+
+  // Add two items to the cart
+  fireEvent.click(addToCartEls[0]);
+  fireEvent.click(addToCartEls[1]);
+
+  // Navigate to the cart page
+  fireEvent.click(navCartEl);
+
+  // Get the Remove From Cart Button
+  const removeFromCartEls = screen.getAllByTestId('remove-from-cart');
+
+  // Remove item from cart
+  fireEvent.click(removeFromCartEls[0]);
+
+  // Get Product Titles in the Cart
+  const cartProductTitleEls = screen.getAllByTestId('cart-product-title');
+
+  // Expect to the right items left in the cart
+  expect(cartProductTitleEls[0].textContent).toBe(productTitleEls[1].textContent);
+});
