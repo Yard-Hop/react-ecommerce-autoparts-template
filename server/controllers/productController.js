@@ -1,5 +1,8 @@
 const { ObjectId } = require('bson');
 const Product = require('../models/productModel');
+const upload = require('../services/fileUpload');
+
+const singleImageUpload = upload.single('image');
 
 async function getProduct(req, res, next) {
   const { productId } = req.params;
@@ -43,21 +46,32 @@ async function getAllProductsByUser(req, res, next) {
     .catch((error) => { next(error); });
 }
 
+// post request to s3 and then post request to db
 async function createProduct(req, res, next) {
   const {
-    title, make, model, year, borough, description, price,
+    title, make, year, borough, description, price, condition,
   } = req.body;
 
   const sellerID = req.cookies.ssid;
+  const imagePath = res.locals.s3location;
 
   await Product.create({
-    title, make, model, year, borough, description, price, sellerID,
+    title, make, year, borough, description, price, condition, imagePath, sellerID,
   })
     .then((product) => {
       res.locals.product = product;
       return next();
     })
-    .catch((error) => { next(error); });
+    .catch((error) => next(error));
+}
+
+async function uploadImageToS3(req, res, next) {
+  await singleImageUpload(req, res, (error) => {
+    if (error) return next(error);
+    res.json({ imageUrl: req.body.image });
+    res.locals.s3location = req.file.location;
+    return next();
+  }).catch((error) => { next(error); });
 }
 
 // TODO: Needs fixing
@@ -102,6 +116,7 @@ module.exports = {
   getProductsByUserId,
   getAllProductsByUser,
   createProduct,
+  uploadImageToS3,
   updateProduct,
   deleteProduct,
   getAllProducts,
