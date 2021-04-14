@@ -1,7 +1,9 @@
-/* eslint-disable */
+const { loadStripe } = require('@stripe/stripe-js');
 const express = require('express');
 
 const app = express();
+
+// const path = require('path');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const { MONGO_URI } = require('../db/config.json');
@@ -14,6 +16,13 @@ const apiRouter = require('./routes/api');
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
+});
+
+// Connect to Stripe
+loadStripe('pk_test_51IdmSzCtjOL0VwivxshnQAmGNBlPWmvvlSicCp2xxpNLUuIdNAAxlYaay2ejYhZvNRIJd6PY0XFABYntzDBKYpm100zqnZEenc').then(() => {
+  console.log('Connected to Stripe');
+}).catch(() => {
+  console.log('Error connecting to Stripe');
 });
 
 // handle parsing request body

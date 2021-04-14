@@ -20,13 +20,14 @@ const Catalog = () => {
   }, []);
 
   return (
-    <div className="catalog__container">
+    <div className="catalog__container" data-testid="catalog">
       <div className="catalog">
         <h2 className="catalog__title">Catalog</h2>
         <div className="catalog__productCont">
           {catalog.map((item) => (
             <CatalogProduct
-              id={item.id}
+              key={item._id}
+              id={item._id}
               title={item.title}
               price={item.price}
               make={item.make}

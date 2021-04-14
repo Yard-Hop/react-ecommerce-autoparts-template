@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-// import moment from 'moment';
 
 const CatalogProduct = ({
   id,
@@ -23,7 +22,7 @@ const CatalogProduct = ({
     <p>{make}</p>
     <p>{moment(year).format('YYYY')}</p>
     <p className="catalogProduct__description">{description}</p>
-    <p>{condition}</p>
+    { condition && <p>{condition}</p> }
     <p>{borough}</p>
   </div>
 );
@@ -37,8 +36,10 @@ CatalogProduct.propTypes = {
   description: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   year: PropTypes.string.isRequired,
-  condition: PropTypes.string.isRequired,
   borough: PropTypes.string.isRequired,
-  location: PropTypes.shape({ borough: PropTypes.string.isRequired })
-    .isRequired,
+  condition: PropTypes.string,
+};
+
+CatalogProduct.defaultProps = {
+  condition: null,
 };

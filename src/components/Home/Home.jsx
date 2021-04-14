@@ -8,7 +8,7 @@ const Home = () => (
     <div className="home__container">
       <img className="home__image" src={Banner} alt="" />
       <div className="home__productsNearby">
-        <h2>Items near you:</h2>
+        <h2 data-testid="home-title">Items near you:</h2>
         <div className="home__row">
           <Product
             id="0000000000"

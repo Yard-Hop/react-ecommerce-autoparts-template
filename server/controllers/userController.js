@@ -8,10 +8,7 @@ async function getUsers(req, res, next) {
       res.locals.users = users;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => next(error));
 }
 
 async function getUser(req, res, next) {
@@ -21,10 +18,7 @@ async function getUser(req, res, next) {
       res.locals.user = user;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 // eslint-disable-next-line consistent-return
@@ -45,8 +39,7 @@ async function verifyUser(req, res, next) {
       });
     }
   } catch (error) {
-    res.locals.error = error;
-    return next();
+    return next(error);
   }
 }
 
@@ -64,10 +57,7 @@ async function createUser(req, res, next) {
       res.locals.userId = _id;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 // TODO: need to pair on this one to let user update whatever field they want without affecting
@@ -85,10 +75,7 @@ async function updateUser(req, res, next) {
       res.locals.userupdated = user;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 // TODO: throw error when a specific user_id no longer exists
@@ -100,10 +87,7 @@ async function deleteUser(req, res, next) {
       res.locals.deleteduser = user;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 module.exports = {

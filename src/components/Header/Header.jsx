@@ -6,10 +6,10 @@ import Logo from '../../yardhop-logo.png';
 import './Header.css';
 
 const Header = () => (
-  <div className="header">
+  <div className="header" data-testid="header">
 
     <div className="logo">
-      <Link to="/">
+      <Link to="/" data-testid="nav-logo">
         <img src={Logo} alt="" />
       </Link>
     </div>

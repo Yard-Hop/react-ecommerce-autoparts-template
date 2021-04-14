@@ -41,7 +41,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login__background">
+    <div className="login__background" data-testid="login">
       <div className="login">
         <div className="login__image">
           <Link to="/">
@@ -66,9 +66,9 @@ const Login = () => {
 
           <div className="login__createAccount">
             <p>Don&apos;t have an account?</p>
-            <a href="/signup">
+            <Link to="/signup" data-testid="login-signup-link">
               Sign Up
-            </a>
+            </Link>
           </div>
 
         </div>
