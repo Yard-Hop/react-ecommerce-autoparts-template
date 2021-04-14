@@ -15,7 +15,7 @@ const CatalogProduct = ({
 }) => (
   <div className="catalogProduct">
     <Link to={`/catalog${id}`}>
-      <h4 className="catalogProduct__title">{title}</h4>
+      <h4 className="catalogProduct__title" data-testid="catalog-product-title">{title}</h4>
     </Link>
     <small>$</small>
     <strong>{price}</strong>
