@@ -15,6 +15,7 @@ const Cart = () => {
           <div className="cart__items">
             {cart.map((item) => (
               <CartProduct
+                key={item.id}
                 id={item.id}
                 title={item.title}
                 price={item.price}
