@@ -9,10 +9,7 @@ async function getProduct(req, res, next) {
       res.locals.product = product;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 async function getAllProducts(req, res, next) {
@@ -21,10 +18,7 @@ async function getAllProducts(req, res, next) {
       res.locals.products = products;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 async function getProductsByUserId(req, res, next) {
@@ -35,10 +29,7 @@ async function getProductsByUserId(req, res, next) {
       res.locals.user = user;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 async function getAllProductsByUser(req, res, next) {
@@ -49,10 +40,7 @@ async function getAllProductsByUser(req, res, next) {
       res.locals.products = products;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 async function createProduct(req, res, next) {
@@ -69,10 +57,7 @@ async function createProduct(req, res, next) {
       res.locals.product = product;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 // TODO: Needs fixing
@@ -98,10 +83,7 @@ async function updateProduct(req, res, next) {
       res.locals.productupdated = product;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 async function deleteProduct(req, res, next) {
@@ -112,10 +94,7 @@ async function deleteProduct(req, res, next) {
       res.locals.deletedproduct = product;
       return next();
     })
-    .catch((error) => {
-      res.locals.error = error;
-      return next();
-    });
+    .catch((error) => { next(error); });
 }
 
 module.exports = {
