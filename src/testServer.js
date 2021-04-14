@@ -6,7 +6,6 @@ import { setupServer } from 'msw/node';
 import mockProducts from '../config/mockProducts';
 
 const server = setupServer(
-  rest.get('https://api.exchangeratesapi.io/latest', (req, res, ctx) => res(ctx.status(200), ctx.json({ rates: { CAD: 1.42 } }))),
   rest.get('http://localhost/api/products', (req, res, ctx) => res(ctx.status(200), ctx.json(mockProducts))),
   rest.get('*', (req, res, ctx) => {
     console.error(`Please add request handler for ${req.url.toString()}`);
