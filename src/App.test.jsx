@@ -3,6 +3,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import App from './App';
+import { StateProvider } from './StateProvider';
+import reducer, { initialState } from './reducer';
 
 let homeTitleEl;
 let headerEl;
@@ -18,9 +20,11 @@ let navLogoEl;
 
 beforeEach(() => {
   render(
-    <MemoryRouter initialEntries={['/']} initialIndex={0}>
-      <App />
-    </MemoryRouter>,
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <MemoryRouter initialEntries={['/']} initialIndex={0}>
+        <App />
+      </MemoryRouter>
+    </StateProvider>,
   );
   homeTitleEl = screen.getByTestId('home-title');
   headerEl = screen.getByTestId('header');
@@ -125,4 +129,39 @@ test('Changes between multiple pages accurately', () => {
   fireEvent.click(loginSignupEl);
   const signupEl = screen.getByTestId('signup');
   expect(signupEl).toBeInTheDocument();
+});
+
+test('Shopping cart count increments by 1 for each item added to the cart', () => {
+  // Get add to cart buttons
+  const addToCartEls = screen.getAllByTestId('add-to-cart');
+
+  // Add two items to the cart
+  fireEvent.click(addToCartEls[0]);
+  fireEvent.click(addToCartEls[1]);
+
+  // Expect there to be two items on the navbar cart counter
+  const cartCountEl = screen.getByTestId('cart-count');
+  expect(cartCountEl.textContent).toBe('2');
+});
+
+test('Shopping cart is correctly updated with the correct items in users basket', () => {
+  // Get add to cart buttons
+  const addToCartEls = screen.getAllByTestId('add-to-cart');
+
+  // Get Product Titles
+  const productTitleEls = screen.getAllByTestId('product-title');
+
+  // Add two items to the cart
+  fireEvent.click(addToCartEls[0]);
+  fireEvent.click(addToCartEls[1]);
+
+  // Navigate to the cart page
+  fireEvent.click(navCartEl);
+
+  // Get Product Titles in the Cart
+  const cartProductTitleEls = screen.getAllByTestId('cart-product-title');
+
+  // Expect to find the same products in the cart as added to the cart on the home page
+  expect(cartProductTitleEls[0].textContent).toBe(productTitleEls[0].textContent);
+  expect(cartProductTitleEls[1].textContent).toBe(productTitleEls[1].textContent);
 });
