@@ -3,6 +3,7 @@ import React from 'react';
 import './ProductForm.css';
 import { useStateValue } from '../../../StateProvider';
 
+// Does not properly work. Use postman for testing only.
 const UploadImages = ({
   selectedFile,
   setSelectedFile,

@@ -19,9 +19,8 @@ const ListingIndex = () => {
   const [isFiledPicked, setIsFiledPicked] = useState(false);
   const history = useHistory();
 
+  // imageUpload does NOT work.
   const uploadProduct = () => {
-    // sends the fetch request of product info & image upload
-    // add imagePath in here.
     fetch('/api/products', {
       method: 'POST',
       headers: {
