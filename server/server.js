@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { loadStripe } = require('@stripe/stripe-js');
 const express = require('express');
 
