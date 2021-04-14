@@ -1,10 +1,10 @@
+/* eslint-disable */
 const express = require('express');
 
 const router = express.Router();
 
 const { STRIPE_KEY } = require('../../db/config.json');
 
-// eslint-disable-next-line import/order
 const stripe = require('stripe')(STRIPE_KEY);
 
 const userController = require('../controllers/userController.js');
