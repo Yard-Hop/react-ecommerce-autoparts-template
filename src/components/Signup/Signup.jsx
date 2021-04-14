@@ -46,7 +46,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup__background">
+    <div className="signup__background" data-testid="signup">
       <div className="signup">
         <div className="login__image">
           <Link to="/">
