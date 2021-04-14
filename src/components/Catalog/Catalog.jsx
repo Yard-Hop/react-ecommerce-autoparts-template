@@ -9,14 +9,25 @@ const Catalog = () => {
   const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
+    let isMounted = true;
+
     fetch('/api/products', {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((data) => data.json())
-      .then((data) => setCatalog(data.products))
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        if (isMounted) {
+          setCatalog(data.products);
+        }
+      })
       // eslint-disable-next-line no-console
       .catch((error) => console.log(error));
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
