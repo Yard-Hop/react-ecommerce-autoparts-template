@@ -5,7 +5,7 @@ import './Product.css';
 import { useStateValue } from '../../StateProvider';
 
 const Product = (props) => {
-  const [{ cart }, dispatch] = useStateValue();
+  const [, dispatch] = useStateValue();
 
   const {
     id,
@@ -19,7 +19,6 @@ const Product = (props) => {
   const addToCart = () => {
     // dispatch item to the data layer
     // eslint-disable-next-line no-console
-    console.log(cart);
 
     dispatch({
       type: 'ADD_TO_CART',
@@ -37,7 +36,7 @@ const Product = (props) => {
   return (
     <div className="product">
       <div className="product__info">
-        <p className="product__title">{title}</p>
+        <p className="product__title" data-testid="product-title">{title}</p>
         <p className="product__price">
           <small>$</small>
           <strong>{price}</strong>
@@ -51,7 +50,7 @@ const Product = (props) => {
       <div className="product__image">
         <img src={image} alt="" />
       </div>
-      <button type="button" onClick={addToCart}>Add to Cart</button>
+      <button type="button" onClick={addToCart} data-testid="add-to-cart">Add to Cart</button>
     </div>
   );
 };

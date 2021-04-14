@@ -32,7 +32,7 @@ const CartProduct = (props) => {
         <img src={image} alt="" />
       </div>
       <div className="cartProduct__info">
-        <p className="cartProduct__title">{title}</p>
+        <p className="cartProduct__title" data-testid="cart-product-title">{title}</p>
         <p className="cartProduct__price">
           <small>$</small>
           <strong>{price}</strong>
