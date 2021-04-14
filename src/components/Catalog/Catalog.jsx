@@ -5,6 +5,7 @@ import CatalogProduct from './CatalogProduct';
 
 const Catalog = () => {
   const [catalog, setCatalog] = useState([]);
+  const [error, setError] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [{ user }, dispatch] = useStateValue();
 
@@ -24,7 +25,11 @@ const Catalog = () => {
         }
       })
       // eslint-disable-next-line no-console
-      .catch((error) => console.log(error));
+      .catch(() => {
+        if (isMounted) {
+          setError(true);
+        }
+      });
 
     return () => {
       isMounted = false;
@@ -36,6 +41,9 @@ const Catalog = () => {
       <div className="catalog">
         <h2 className="catalog__title">Catalog</h2>
         <div className="catalog__productCont">
+          {
+            error && <div>There was an error!</div>
+          }
           {catalog.map((item) => (
             <CatalogProduct
               key={item._id}
