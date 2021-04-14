@@ -18,6 +18,7 @@ const Catalog = () => {
     })
       .then((data) => data.json())
       .then((data) => {
+        // Check if the component is mounted to prevent a memory leak
         if (isMounted) {
           setCatalog(data.products);
         }
