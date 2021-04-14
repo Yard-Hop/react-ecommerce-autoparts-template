@@ -8,7 +8,7 @@ const Cart = () => {
   const [{ cart }] = useStateValue();
 
   return (
-    <div className="cart">
+    <div className="cart" data-testid="cart">
       <div className="cart__left">
         <div>
           <h2 className="cart__title">Your Shopping Cart</h2>

@@ -33,19 +33,19 @@ const Nav = () => {
   };
 
   return (
-    <div className="nav">
+    <div className="nav" data-testid="nav">
       <div className="nav__links">
-        <Link style={navStyle} to="/">
+        <Link style={navStyle} to="/" data-testid="nav-home">
           <p className="link">Home</p>
         </Link>
-        <Link style={navStyle} to="/catalog">
+        <Link style={navStyle} to="/catalog" data-testid="nav-catalog">
           <p className="link">Catalog</p>
         </Link>
-        <Link style={navStyle} to="/order">
+        <Link style={navStyle} to="/order" data-testid="nav-track">
           <p className="link">Track Order</p>
         </Link>
         { user && (
-          <Link style={navStyle} to="/dashboard">
+          <Link style={navStyle} to="/dashboard" data-testid="nav-dashboard">
             <p className="link">Dashboard</p>
           </Link>
         )}
@@ -60,17 +60,17 @@ const Nav = () => {
           </div>
         ) : (
           <div className="nav__login">
-            <Link to="/login">
+            <Link to="/login" data-testid="nav-login">
               <button className="nav__loginButton" type="button">Login</button>
             </Link>
             <p>or</p>
-            <Link to="/signup">
+            <Link to="/signup" data-testid="nav-signup">
               <button className="nav__signUpButton" type="button">Create an Account</button>
             </Link>
           </div>
         )}
         <div className="nav__basket">
-          <Link to="/cart">
+          <Link to="/cart" data-testid="nav-cart">
             <ShoppingCartIcon style={{ fill: '#f8f8f8' }} />
           </Link>
           <span className="nav__basketCount">{cart?.length}</span>
