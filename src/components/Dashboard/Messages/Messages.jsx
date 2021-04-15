@@ -1,6 +1,4 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
+/* eslint-disable */
 import './Messages.css';
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@material-ui/core';
