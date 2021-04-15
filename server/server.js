@@ -1,13 +1,17 @@
+/* eslint-disable no-console */
+/* eslint-disable import/newline-after-import */
 const express = require('express');
-
+const http = require('http');
 const app = express();
-// const path = require('path');
-const cookieParser = require('cookie-parser');
-const mongoose = require('mongoose');
-/* eslint import/no-unresolved: 2 */
-const { MONGO_URI } = require('../db/config.json');
+const server = http.createServer(app);
+const socketConnect = require('socket.io');
+const io = socketConnect(server);
 
 const PORT = 8080;
+
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+const { MONGO_URI } = require('../db/config.json');
 
 const apiRouter = require('./routes/api');
 
@@ -47,10 +51,20 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-// listens on port 8080 -> http://localhost:8080/
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server listening on port: ${PORT}...`);
+io.on('connection', (socket) => {
+  console.log('MADE SOCKET CONNECTION');
+  console.log(`${socket.id} is connected`);
+  // emit a socket on
+  socket.emit('your id', socket.id);
+  socket.emit('message', 'message sent from server');
+  socket.on('message', (body) => {
+    console.log('message recieved: ', body);
+    io.emit('message', body);
+  });
 });
 
-module.exports = app;
+// listen is a mehod that takes in two arguments, the first one is the PORT number
+// the second is a callback function
+server.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
+});

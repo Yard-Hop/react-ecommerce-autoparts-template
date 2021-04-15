@@ -20,6 +20,15 @@
         "react"
     ],
     "rules": {
-      "react/jsx-filename-extension": 0
-    }
+      "react/jsx-filename-extension": 0,
+      "import/no-named-as-default": 0
+    },
+    "settings": {
+    	"import/resolver": {
+				"node": {
+					"paths": ["src"],
+					"extensions": [".js", ".jsx", ".ts", ".tsx"]
+				}
+    	}
+  	}
 }

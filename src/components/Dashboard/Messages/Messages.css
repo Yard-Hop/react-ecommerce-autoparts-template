@@ -65,11 +65,16 @@
     justify-content: flex-end;
     align-items: flex-end;
 }
-.b{
+.myMessage{
     /* border: 3px solid black; */
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+}
+.partnerMessage{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 .message{
     margin: 5px;
