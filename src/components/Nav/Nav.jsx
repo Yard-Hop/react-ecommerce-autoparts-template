@@ -73,7 +73,7 @@ const Nav = () => {
           <Link to="/cart" data-testid="nav-cart">
             <ShoppingCartIcon style={{ fill: '#f8f8f8' }} />
           </Link>
-          <span className="nav__basketCount">{cart?.length}</span>
+          <span className="nav__basketCount" data-testid="cart-count">{cart?.length}</span>
         </div>
       </div>
     </div>

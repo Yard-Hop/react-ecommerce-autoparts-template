@@ -5,18 +5,35 @@ import CatalogProduct from './CatalogProduct';
 
 const Catalog = () => {
   const [catalog, setCatalog] = useState([]);
+  const [error, setError] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
+    let isMounted = true;
+
     fetch('/api/products', {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).then((data) => data.json())
-      .then((data) => setCatalog(data.products))
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        // Check if the component is mounted to prevent a memory leak
+        if (isMounted) {
+          setCatalog(data.products);
+        }
+      })
       // eslint-disable-next-line no-console
-      .catch((error) => console.log(error));
+      .catch(() => {
+        if (isMounted) {
+          setError(true);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
@@ -24,6 +41,9 @@ const Catalog = () => {
       <div className="catalog">
         <h2 className="catalog__title">Catalog</h2>
         <div className="catalog__productCont">
+          {
+            error && <div>There was an error!</div>
+          }
           {catalog.map((item) => (
             <CatalogProduct
               key={item._id}

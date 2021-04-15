@@ -5,7 +5,16 @@ import './Cart.css';
 import { useStateValue } from '../../StateProvider';
 
 const Cart = () => {
-  const [{ cart }] = useStateValue();
+  const [{ cart }, dispatch] = useStateValue();
+
+  const deleteItem = (id) => {
+    // eslint-disable-next-line no-console
+
+    dispatch({
+      type: 'REMOVE_FROM_CART',
+      id,
+    });
+  };
 
   return (
     <div className="cart" data-testid="cart">
@@ -15,12 +24,14 @@ const Cart = () => {
           <div className="cart__items">
             {cart.map((item) => (
               <CartProduct
+                key={item.id}
                 id={item.id}
                 title={item.title}
                 price={item.price}
                 image={item.image}
                 location={item.location}
                 condition={item.condition}
+                deleteItem={deleteItem}
               />
             ))}
           </div>

@@ -15,15 +15,15 @@ const CatalogProduct = ({
 }) => (
   <div className="catalogProduct">
     <Link to={`/catalog${id}`}>
-      <h4 className="catalogProduct__title">{title}</h4>
+      <h4 className="catalogProduct__title" data-testid="catalog-product-title">{title}</h4>
     </Link>
     <small>$</small>
-    <strong>{price}</strong>
-    <p>{make}</p>
-    <p>{moment(year).format('YYYY')}</p>
-    <p className="catalogProduct__description">{description}</p>
+    <strong data-testid="catalog-product-price">{price}</strong>
+    <p data-testid="catalog-product-make">{make}</p>
+    <p data-testid="catalog-product-year">{moment(year).format('YYYY')}</p>
+    <p className="catalogProduct__description" data-testid="catalog-product-desc">{description}</p>
     { condition && <p>{condition}</p> }
-    <p>{borough}</p>
+    <p data-testid="catalog-product-borough">{borough}</p>
   </div>
 );
 
