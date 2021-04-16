@@ -21,7 +21,7 @@ beforeAll(() => {
   });
 });
 
-beforeEach(async () => {
+beforeEach(() => {
   render(<Main />);
 });
 

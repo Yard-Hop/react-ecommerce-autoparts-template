@@ -32,7 +32,7 @@ beforeAll(() => {
   });
 });
 
-beforeEach(async () => {
+beforeEach(() => {
   render(
     <StateProvider initialState={initialState} reducer={reducer}>
       <MemoryRouter initialEntries={['/dashboard']} initialIndex={0}>

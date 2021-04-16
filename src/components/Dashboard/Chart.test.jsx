@@ -22,7 +22,7 @@ beforeAll(() => {
 });
 
 let chartEl;
-beforeEach(async () => {
+beforeEach(() => {
   render(<Chart />);
   chartEl = screen.getByTestId('chart');
 });

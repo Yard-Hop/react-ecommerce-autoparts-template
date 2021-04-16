@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
-beforeEach(async () => {
+beforeEach(() => {
   render(
     <MemoryRouter initialEntries={['/Sidebar']} initialIndex={0}>
       <Sidebar />
