@@ -5,6 +5,7 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import LockIcon from '@material-ui/icons/Lock';
 import Logo from '../../yardhop-logo.png';
 import { useStateValue } from '../../StateProvider';
+import GoogleLoginButton from './GoogleLoginButton';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -63,7 +64,7 @@ const Login = () => {
 
             <button type="submit" className="login__signInButton" onClick={(e) => signInButton(e)}>Log in</button>
           </form>
-
+          <GoogleLoginButton />
           <div className="login__createAccount">
             <p>Don&apos;t have an account?</p>
             <Link to="/signup" data-testid="login-signup-link">
