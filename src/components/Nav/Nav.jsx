@@ -60,11 +60,11 @@ const Nav = () => {
           <div className="nav__logout">
             <p className="nav__loggedInMsg">{`Hello, ${user.name}`}</p>
             { userId.includes('GOOGLE') ? (
+              <GoogleLogoutButton onClick={(e) => logOutButton(e)} />
+            ) : (
               <Link style={navStyle} to="/">
                 <button id="nav__logOutButton" type="button" onClick={(e) => logOutButton(e)}>Logout</button>
               </Link>
-            ) : (
-              <GoogleLogoutButton onClick={(e) => logOutButton(e)} />
             ) }
           </div>
         ) : (
