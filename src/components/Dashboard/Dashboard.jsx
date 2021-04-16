@@ -18,8 +18,6 @@ const Dashboard = () => {
   const [{ user }, dispatch] = useStateValue();
   const history = useHistory();
   // eslint-disable-next-line no-console
-  console.log('dashboard');
-
   useEffect(() => {
     if (!user) {
       history.push('/');

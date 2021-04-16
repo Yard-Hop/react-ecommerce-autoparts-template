@@ -21,7 +21,7 @@ const Inventory = () => {
   }, []);
 
   return (
-    <div id="inventory">
+    <div id="inventory" data-testid="inventory">
       <h1>Inventory</h1>
       <div>
         {
