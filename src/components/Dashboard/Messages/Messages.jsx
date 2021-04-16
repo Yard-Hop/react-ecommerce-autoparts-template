@@ -6,8 +6,6 @@ import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 
 const Messages = () => {
-  // eslint-disable-next-line no-console
-  console.log('placeholder');
   const [form, setForm] = useState('');
   const [threads, setThreads] = useState([
     { user: 'Tom' },
@@ -40,14 +38,13 @@ const Messages = () => {
   const messageThreads = () => {
     const test = [];
     for (let i = 0; i < threads.length; i++) {
-      console.log(threads[i].user);
-      test.push(<div className="thread">{threads[i].user}</div>);
+      test.push(<div key={threads[i].user} className="thread">{threads[i].user}</div>);
     }
     return test;
   };
 
   return (
-    <div className="messagesWrapper">
+    <div className="messagesWrapper" data-testid="messages">
       <div className="messageSideBar">
         <div className="messageSideBarHeader"> sidebar header </div>
         <div className="threadContainer">
@@ -57,7 +54,7 @@ const Messages = () => {
 
       </div>
       <div className="messagesContainer">
-        <div className="messageContainerHeader">
+        <div className="messageContainerHeader" data-testid="messages-header">
           <h1> container header</h1>
         </div>
         <div className="messageBackground">
@@ -70,12 +67,14 @@ const Messages = () => {
         </div>
         <div className="formAndButton">
           <input
+            data-testid="messages-input"
             type="text"
             className="messengerForm"
             placeholder=" Type something..."
             onChange={(e) => handleFormChange(e)}
           />
           <Button
+            data-testid="messages-send-button"
             className="messageButton"
             color="primary"
             variant="contained"

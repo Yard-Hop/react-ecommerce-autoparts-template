@@ -24,7 +24,7 @@ const Chart = () => {
     { x: 9, y: 0 },
   ];
   return (
-    <div style={{ marginTop: '15px' }}>
+    <div style={{ marginTop: '15px' }} data-testid="chart">
       <XYPlot height={300} width={300}>
         <VerticalGridLines />
         <HorizontalGridLines />
