@@ -19,7 +19,7 @@ const product = {
   __v: 0,
 };
 
-beforeEach(async () => {
+beforeEach(() => {
   render(
     <MemoryRouter initialEntries={['/']} initialIndex={0}>
       <CatalogProduct {...product} />
