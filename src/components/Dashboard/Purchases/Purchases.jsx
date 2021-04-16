@@ -21,7 +21,7 @@ const Purchases = () => {
   }, []);
 
   return (
-    <div id="purchases">
+    <div id="purchases" data-testid="purchases">
       <h1>Purchases History</h1>
       <div>
         {

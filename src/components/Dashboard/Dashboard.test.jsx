@@ -91,3 +91,25 @@ test('It changes to the Inventory page when the use clicks Inventory', () => {
   const inventoryEl = screen.getByTestId('inventory');
   expect(inventoryEl).toBeInTheDocument();
 });
+
+test('It changes to the Purchases page when the use clicks Purchases', () => {
+  const purchasesNavEl = screen.getByTestId('sidebar-purchases');
+
+  // Navigate to the the purchases page
+  fireEvent.click(purchasesNavEl);
+
+  // Expect the purchases to render
+  const purchasesEl = screen.getByTestId('purchases');
+  expect(purchasesEl).toBeInTheDocument();
+});
+
+test('It changes to the Messages page when the use clicks Messages', () => {
+  const messagesNavEl = screen.getByTestId('sidebar-messages');
+
+  // Navigate to the the messages page
+  fireEvent.click(messagesNavEl);
+
+  // Expect the messages to render
+  const messagesEl = screen.getByTestId('messages');
+  expect(messagesEl).toBeInTheDocument();
+});

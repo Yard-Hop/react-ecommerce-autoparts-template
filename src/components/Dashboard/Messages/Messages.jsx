@@ -6,8 +6,6 @@ import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 
 const Messages = () => {
-  // eslint-disable-next-line no-console
-  console.log('placeholder');
   const [form, setForm] = useState('');
   const [threads, setThreads] = useState([
     { user: 'Tom' },
@@ -40,14 +38,13 @@ const Messages = () => {
   const messageThreads = () => {
     const test = [];
     for (let i = 0; i < threads.length; i++) {
-      console.log(threads[i].user);
-      test.push(<div className="thread">{threads[i].user}</div>);
+      test.push(<div key={threads[i].user} className="thread">{threads[i].user}</div>);
     }
     return test;
   };
 
   return (
-    <div className="messagesWrapper">
+    <div className="messagesWrapper" data-testid="messages">
       <div className="messageSideBar">
         <div className="messageSideBarHeader"> sidebar header </div>
         <div className="threadContainer">
