@@ -54,7 +54,7 @@ const Messages = () => {
 
       </div>
       <div className="messagesContainer">
-        <div className="messageContainerHeader">
+        <div className="messageContainerHeader" data-testid="messages-header">
           <h1> container header</h1>
         </div>
         <div className="messageBackground">
@@ -67,12 +67,14 @@ const Messages = () => {
         </div>
         <div className="formAndButton">
           <input
+            data-testid="messages-input"
             type="text"
             className="messengerForm"
             placeholder=" Type something..."
             onChange={(e) => handleFormChange(e)}
           />
           <Button
+            data-testid="messages-send-button"
             className="messageButton"
             color="primary"
             variant="contained"
