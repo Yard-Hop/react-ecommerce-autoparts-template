@@ -7,7 +7,6 @@ const clientId = '936510919687-ggck6cs201dedk2pafg9r0kpts99cht9.apps.googleuserc
 function GoogleLogoutButton() {
   const history = useHistory();
   const onSuccess = () => {
-    console.log('Logout made successfully');
     history.go('/');
   };
 

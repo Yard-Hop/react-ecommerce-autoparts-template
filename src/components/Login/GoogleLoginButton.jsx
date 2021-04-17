@@ -12,7 +12,6 @@ function GoogleLoginButton() {
   const [{ user }, dispatch] = useStateValue();
 
   const onSuccess = (res) => {
-    console.log('Login Success: currentUser:', res.profileObj);
     const { name, googleId } = res.profileObj;
     dispatch({
       type: 'AUTH_USER',
@@ -25,6 +24,7 @@ function GoogleLoginButton() {
   };
 
   const onFailure = (res) => {
+    // eslint-disable-next-line no-console
     console.log('Login failed: res:', res);
   };
 
