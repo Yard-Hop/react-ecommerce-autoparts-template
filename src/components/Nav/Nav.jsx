@@ -3,10 +3,15 @@ import { Link, useHistory } from 'react-router-dom';
 import './Nav.css';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { useStateValue } from '../../StateProvider';
+import GoogleLogoutButton from '../Login/GoogleLogoutButton';
 
 const Nav = () => {
   const [{ cart }] = useStateValue();
   const [{ user }, dispatch] = useStateValue();
+  let userId;
+  if (user) {
+    userId = user.id;
+  }
   const history = useHistory();
 
   const navStyle = {
@@ -54,9 +59,13 @@ const Nav = () => {
         {user ? (
           <div className="nav__logout">
             <p className="nav__loggedInMsg">{`Hello, ${user.name}`}</p>
-            <Link style={navStyle} to="/">
-              <button id="nav__logOutButton" type="button" onClick={(e) => logOutButton(e)}>Logout</button>
-            </Link>
+            { userId.includes('GOOGLE') ? (
+              <GoogleLogoutButton onClick={(e) => logOutButton(e)} />
+            ) : (
+              <Link style={navStyle} to="/">
+                <button id="nav__logOutButton" type="button" onClick={(e) => logOutButton(e)}>Logout</button>
+              </Link>
+            ) }
           </div>
         ) : (
           <div className="nav__login">
